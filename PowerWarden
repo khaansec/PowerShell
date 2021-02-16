@@ -1,4 +1,11 @@
 while($true)
 {
-
+write "=====Established Connections====="
+  Get-NetTCPCOnnection | Where-Object {$_.State -eq 'Established'} |
+write ""
+write "=====New Users====="
+  Get-ADUser -filter * -Properties whenChanged | Where-Object {$_.whenChanged -ge "2/16/2021 0:00:00 AM" | select -exp name
+ write ""
+ write"=====Admin Users====="
+  Get-ADGroupMember -Identity "administrators" | select name
 }
