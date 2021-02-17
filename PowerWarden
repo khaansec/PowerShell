@@ -14,7 +14,7 @@ write "=====New Files====="
   if ((Get-ChildItem -ErrorAction SilentlyContinue -Path C: -Recurse -Force | select -exp LastWriteTime) -ge $PastHalf)
   {
   Get-ChildItem -ErrorAction SilentlyContinue -Path C: -Recurse -Force | select -exp name
-  }  
+  }#End of if 
 sleep 10  
   cls
-}
+}#End of while
