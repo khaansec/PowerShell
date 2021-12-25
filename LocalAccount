@@ -1,0 +1,21 @@
+```PowerShell
+write "This script helps an admin change local passwords"
+while ($true) {
+$userList = @(get-localuser *)
+write "Choose an option:"
+        ; write ""
+        ; write "1. List local users"
+        ; write "2. Change a local user's password"
+    $option = Read-Host
+switch ($option)
+{
+    1 {$userList}
+    2 {write "Enter a user. Reference the array from option 1. i.e. 1, 2, 3..."
+        ; $user = Read-Host
+        ; $userFromArray = $userList[$user]
+        ; write "Enter a password"
+        ; $pass = Read-Host -AsSecureString
+        ; Set-LocalUser $userFromArray -Password $pass }
+}# End of Switch-Case
+}# End of While True
+```
