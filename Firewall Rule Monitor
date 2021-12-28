@@ -1,0 +1,36 @@
+Clear-Host
+write " / \-------------------------------------------------------,"
+write " \_,|                                                      |"
+write "    |    This script takes a baseline                      |"
+write "    |      of the firewall rules on a server               |"
+write "    |      and compares it to an updated                   |"
+write "    |      file every 60 seconds                           |"
+write "    |  ,----------------------------------------------------"
+write "    \_/___________________________________________________/ "
+# By Khandosi
+$user = $env:UserName
+    write ""
+Get-NetFirewallRule * | Select-Object DisplayName > C:\Users\$user\Desktop\firewall_baseline.txt
+while ($true) {
+    Write "Reading reference file"
+    sleep 1
+    write ""
+$fileReference = Get-Content "C:\Users\$user\Desktop\firewall_baseline.txt"
+    write "Generating difference file"
+    sleep 1
+    write ""
+Get-NetFirewallRule * | Select-Object DisplayName > C:\Users\$user\Desktop\firewall_difference.txt
+    write "Reading difference file"
+    sleep 1
+    write ""
+$fileDifference = Get-Content "C:\Users\$user\Desktop\firewall_difference.txt"
+    write "Comparing files for differences"
+    sleep 1
+    write ""
+Compare-Object $fileReference $fileDifference
+    write ""
+    write ""
+    write "Will update in 60 secs."
+    sleep 60
+cls
+}# End of While True
