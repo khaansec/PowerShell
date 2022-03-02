@@ -2,3 +2,10 @@
 while ($true) {
 taskkill /IM <process_name.exe> /F
 }
+
+
+# Under development
+$task = @(get-process | where {$_.ProcessName -like "yky*"} | Select-Object -Property Id)
+for ($i = 0; $i -lt $task.Length; $i ++) {
+write-host $i
+}
