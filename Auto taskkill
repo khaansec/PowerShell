@@ -1,0 +1,4 @@
+# Will kill a process by name if it pops up over and over again.
+while ($true) {
+taskkill /IM <process_name.exe> /F
+}
